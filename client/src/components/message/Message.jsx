@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./message.css";
-import { format } from "timeago.js";
+// import { format } from "timeago.js";
+import TimeAgo from "react-timeago";
 import axios from "axios";
 
 export default function Message({ message, own }) {
@@ -22,7 +23,7 @@ export default function Message({ message, own }) {
         <img src={user?.profilePicture} alt="" className="messageImg" />
         <p className="messageText">{message?.text}</p>
       </div>
-      <div className="messageBottom">{format(message?.createdAt)}</div>
+      <TimeAgo className="messageBottom" date={message?.createdAt} />
     </div>
   );
 }

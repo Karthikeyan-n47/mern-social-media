@@ -1,5 +1,5 @@
 import "./chatOnline.css";
-export default function ChatOnline() {
+export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   return (
     <div className="chatOnline">
       <div className="chatOnlineFriend">

@@ -2,7 +2,7 @@ import "./post.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { format } from "timeago.js";
+import TimeAgo from "react-timeago";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -59,7 +59,7 @@ export default function Post({ post }) {
               />
             </Link>
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{format(post.createdAt)}</span>
+            <TimeAgo className="postDate" date={post?.createdAt} />
           </div>
           <div className="postTopRight">
             <MoreVertIcon />
