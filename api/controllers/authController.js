@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const CatchAsync = require("../utils/CatchAsync");
 const AppError = require("../utils/AppError");
+const jwt = require("jsonwebtoken");
 
 const multer = require("multer");
 
@@ -38,13 +39,16 @@ exports.regiter = CatchAsync(async (req, res, next) => {
 });
 
 exports.login = CatchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password: enteredPassword } = req.body;
   const userDoc = await User.findOne({ email });
   if (!userDoc) {
     return next(new AppError("Invalid Username or password", 404));
   }
   if (userDoc?.password) {
-    const isPasswordCorrect = await bcrypt.compare(password, userDoc.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      enteredPassword,
+      userDoc.password
+    );
     if (!isPasswordCorrect) {
       return next(new AppError("Invalid Username or Password!", 400));
     }

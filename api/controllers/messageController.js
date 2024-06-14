@@ -1,6 +1,5 @@
 const Message = require("../models/Message");
 const CatchAsync = require("../utils/CatchAsync");
-const AppError = require("../utils/AppError");
 
 exports.createMessage = CatchAsync(async (req, res, next) => {
   const message = await Message.create(req.body);
