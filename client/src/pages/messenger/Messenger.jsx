@@ -5,7 +5,7 @@ import Message from "../../components/message/Message";
 import TopBar from "../../components/topbar/TopBar";
 import "./messenger.css";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
+import axios from "../../axios";
 import { io } from "socket.io-client";
 
 export default function Messenger() {

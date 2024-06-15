@@ -4,7 +4,7 @@ import RightBar from "../../components/rightbar/RightBar";
 import SideBar from "../../components/sidebar/SideBar";
 import TopBar from "../../components/topbar/TopBar";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../axios";
 import { useParams } from "react-router";
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;

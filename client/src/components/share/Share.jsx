@@ -6,7 +6,7 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import CancelIcon from "@mui/icons-material/Cancel";
-import axios from "axios";
+import axios from "../../axios";
 
 export default function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;

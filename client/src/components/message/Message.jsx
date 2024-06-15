@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./message.css";
 // import { format } from "timeago.js";
 import TimeAgo from "react-timeago";
-import axios from "axios";
+import axios from "../../axios";
 
 export default function Message({ message, own }) {
   const [user, setUser] = useState(null);
