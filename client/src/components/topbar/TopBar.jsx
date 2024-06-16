@@ -5,18 +5,21 @@ import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+// import { useContext } from "react";
+// import { AuthContext } from "../../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import { logoutCall } from "../../apiCalls";
 export default function TopBar() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const { user, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const { user, dispatch } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const handleClick = () => {
     logoutCall(dispatch);
-    navigate("/login");
+    // navigate("/login");
     // window.location.reload();
   };
 

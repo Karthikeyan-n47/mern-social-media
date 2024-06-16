@@ -3,14 +3,16 @@ import PermMediaIcon from "@mui/icons-material/PermMedia";
 import LabelIcon from "@mui/icons-material/Label";
 import RoomIcon from "@mui/icons-material/Room";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
-import { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useRef, useState } from "react";
+// import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 import CancelIcon from "@mui/icons-material/Cancel";
 import axios from "../../axios";
 
 export default function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.user);
   const [file, setFile] = useState(null);
   const desc = useRef();
 

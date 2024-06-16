@@ -1,14 +1,16 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { AuthContext } from "./context/AuthContext";
+// import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
+import { useSelector } from "react-redux";
 
 function App() {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.user);
   return (
     <Routes>
       <Route

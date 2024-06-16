@@ -2,15 +2,18 @@ import { useRef } from "react";
 import * as React from "react";
 import "./login.css";
 import { loginCall } from "../../apiCalls";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+// import { useContext } from "react";
+// import { AuthContext } from "../../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
 // import Box from "@mui/material/Box";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
-  const { isFetching, dispatch } = useContext(AuthContext);
+  // const { isFetching, dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const isFetching = useSelector((state) => state.loading);
   const handleSubmit = (e) => {
     e.preventDefault();
     loginCall(

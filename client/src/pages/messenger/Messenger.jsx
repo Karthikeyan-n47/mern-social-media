@@ -1,10 +1,11 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
 import Conversation from "../../components/conversations/Conversation";
 import Message from "../../components/message/Message";
 import TopBar from "../../components/topbar/TopBar";
 import "./messenger.css";
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 import axios from "../../axios";
 import { io } from "socket.io-client";
 
@@ -18,7 +19,8 @@ export default function Messenger() {
   // const [socket, setSocket] = useState(null);
   const socket = useRef();
 
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.user);
   const scrollRef = useRef();
 
   useEffect(() => {

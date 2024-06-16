@@ -1,31 +1,46 @@
 import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../axios";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+} from "../../redux/user/userSlice";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+
 export default function RightBar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // console.log(user);
   const [friends, setFriends] = useState(null);
-  const { user: currentUser } = useContext(AuthContext);
+  // const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser } = useSelector((state) => state.user);
+  // console.log(currentUser);
   const [followed, setFollowed] = useState(
     // currentUser.following.includes(user?._id)
     false
   );
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    setFollowed(currentUser?.following.includes(user?._id));
+    setFollowed(currentUser?.following?.includes(user?._id));
   }, [currentUser, user?._id, followed]);
   // console.log(followed, currentUser.following, user);
+
   useEffect(() => {
     const getFreinds = async () => {
       try {
         // console.log(user);
         const friendsList = await axios.get(`/users/friends/${user?._id}`);
-        setFriends(friendsList.data);
+        setFriends(friendsList?.data);
       } catch (err) {
         console.log(err);
       }
@@ -35,18 +50,25 @@ export default function RightBar({ user }) {
 
   const handleClick = async () => {
     // e.preventDefault();
+    dispatch(updateUserStart());
+    let res;
     try {
       if (followed) {
-        await axios.put("/users/" + user._id + "/unfollow", {
+        res = await axios.put("/users/" + user._id + "/unfollow", {
           id: currentUser?._id,
         });
+        dispatch(updateUserSuccess(res?.data?.currentUser));
+        // setFriends(res?.data?.user?.followers)
       } else {
-        await axios.put("/users/" + user._id + "/follow", {
+        res = await axios.put("/users/" + user._id + "/follow", {
           id: currentUser?._id,
         });
+        dispatch(updateUserSuccess(res?.data?.currentUser));
       }
+      // navigate("/");
     } catch (err) {
-      console.log(err);
+      dispatch(updateUserFailure(err));
+      // console.log(err);
     }
     setFollowed(!followed);
   };
