@@ -46,7 +46,7 @@ export default function RightBar({ user }) {
       }
     };
     getFreinds();
-  }, [user]);
+  }, [user, currentUser]);
 
   const handleClick = async () => {
     // e.preventDefault();

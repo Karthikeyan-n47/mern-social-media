@@ -48,7 +48,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
                 src={
                   friend?.profilePicture
                     ? friend.profilePicture
-                    : "https://images.pexels.com/photos/354951/pexels-photo-354951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    : "https://socialmedia-mern-stack-s3-upload.s3.ap-south-1.amazonaws.com/uploads/1713266275730-noAvatar.png"
                 }
                 alt=""
                 className="chatOnlineImg"

@@ -25,12 +25,21 @@ exports.getFriends = CatchAsync(async (req, res, next) => {
     return next(new AppError("User not found", 404));
   }
   const friends = await Promise.all(
-    user.following.map((friendId) => {
+    user.following?.map((friendId) => {
       return User.findById(friendId);
+    })
+  );
+  const followerFriends = await Promise.all(
+    user.followers?.map((follower) => {
+      return User.findById(follower);
     })
   );
   let friendList = [];
   friends?.map((friend) => {
+    const { _id, username, profilePicture } = friend;
+    friendList.push({ _id, username, profilePicture });
+  });
+  followerFriends?.map((friend) => {
     const { _id, username, profilePicture } = friend;
     friendList.push({ _id, username, profilePicture });
   });

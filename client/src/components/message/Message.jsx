@@ -20,7 +20,14 @@ export default function Message({ message, own }) {
   return (
     <div className={own ? "message own" : "message"}>
       <div className="messageTop">
-        <img src={user?.profilePicture} alt="" className="messageImg" />
+        <img
+          src={
+            user?.profilePicture ||
+            "https://socialmedia-mern-stack-s3-upload.s3.ap-south-1.amazonaws.com/uploads/1713266275730-noAvatar.png"
+          }
+          alt=""
+          className="messageImg"
+        />
         <p className="messageText">{message?.text}</p>
       </div>
       <TimeAgo className="messageBottom" date={message?.createdAt} />
