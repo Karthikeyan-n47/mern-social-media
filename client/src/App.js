@@ -3,6 +3,8 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
+import ResetPassword from "./pages/resetPassword/ResetPassword";
 import { Route, Routes, Navigate } from "react-router-dom";
 // import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
@@ -33,6 +35,14 @@ function App() {
       <Route
         path="/profile/:username"
         element={user ? <Profile /> : <Navigate replace to={"/login"} />}
+      />
+      <Route
+        path="/forgot-password"
+        element={user ? <Navigate replace to={"/"} /> : <ForgotPassword />}
+      />
+      <Route
+        path="/reset-password/:id/:token"
+        element={user ? <Navigate replace to={"/"} /> : <ResetPassword />}
       />
     </Routes>
   );

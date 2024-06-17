@@ -6,6 +6,7 @@ import { loginCall } from "../../apiCalls";
 // import { AuthContext } from "../../context/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
+import { Link } from "react-router-dom";
 // import Box from "@mui/material/Box";
 
 export default function Login() {
@@ -56,13 +57,17 @@ export default function Login() {
                 "Log in"
               )}
             </button>
-            <span className="loginForgot">Forgot password?</span>
+            <Link to={"/forgot-password"} className="loginForgot link">
+              Forgot password?
+            </Link>
             <button className="loginRegisterButton">
-              {isFetching ? (
-                <CircularProgress color="background" size={"35px"} />
-              ) : (
-                "Create a new account"
-              )}
+              <Link to={"/register"} className="link">
+                {isFetching ? (
+                  <CircularProgress color="background" size={"35px"} />
+                ) : (
+                  "Create a new account"
+                )}
+              </Link>
             </button>
           </form>
         </div>
