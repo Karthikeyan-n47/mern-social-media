@@ -4,8 +4,6 @@ import axios from "../../axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function ResetPassword() {
-  //   const password = useRef();
-  //   const confirmPassword = useRef();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
